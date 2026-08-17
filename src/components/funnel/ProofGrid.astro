@@ -1,0 +1,47 @@
+---
+import { approvedProof, funnelConfig } from '../../data/funnel';
+
+const { proof, staging } = funnelConfig;
+const hasApprovedProof = approvedProof.length > 0;
+---
+
+<section class="proof section-shell" aria-labelledby="proof-title">
+  <div class="container">
+    <div class="proof__intro">
+      <p class="section-kicker">Proof architecture</p>
+      <h2 id="proof-title">{proof.heading}</h2>
+      <p>{proof.body}</p>
+    </div>
+
+    {hasApprovedProof ? (
+      <div class="proof-grid">
+        {approvedProof.map((item) => (
+          <figure class="proof-card">
+            {item.image && (
+              <img
+                src={item.image.src}
+                width={item.image.width}
+                height={item.image.height}
+                alt={item.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+            <figcaption>
+              <strong>{item.title}</strong>
+              <p>{item.copy}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    ) : (
+      <div class="proof-gate" role="note">
+        <span class="proof-gate__tag">Approval gate active</span>
+        <p>{staging.message}</p>
+        <div class="proof-gate__placeholders" aria-hidden="true">
+          {Array.from({ length: 6 }).map((_, index) => <span data-slot={index + 1}></span>)}
+        </div>
+      </div>
+    )}
+  </div>
+</section>

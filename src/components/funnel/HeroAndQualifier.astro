@@ -1,0 +1,45 @@
+---
+import { funnelConfig } from '../../data/funnel';
+import ActionLink from './ActionLink.astro';
+
+const { brand, funnel, hero, qualifier } = funnelConfig;
+---
+
+<header class="hero section-shell" aria-labelledby="hero-title">
+  <div class="container hero__content">
+    <p class="brand-mark" aria-label={`${brand.name} staging wordmark`}>{brand.logoText}</p>
+    <p class="eyebrow">{hero.eyebrow}</p>
+    <h1 id="hero-title">{hero.headline}</h1>
+    <p class="hero__subheadline">{hero.subheadline}</p>
+
+    <div class="hero-visual" role="img" aria-label={hero.visual.title}>
+      <div class="hero-visual__beam"></div>
+      <div class="hero-visual__shape hero-visual__shape--primary"></div>
+      <div class="hero-visual__shape hero-visual__shape--secondary"></div>
+      <div class="hero-visual__copy">
+        <span>{hero.visual.eyebrow}</span>
+        <strong>{hero.visual.title}</strong>
+        <small>{hero.visual.description}</small>
+      </div>
+    </div>
+
+    <section class="qualifier" aria-labelledby="qualifier-title">
+      <h2 id="qualifier-title">{qualifier.prompt}</h2>
+      <div class="qualifier__options">
+        {qualifier.options.map((option) => (
+          <button class="choice-button" type="button" disabled title="Wire this option to the approved funnel step before launch.">
+            <span>{option.label}</span>
+            <small>{option.description}</small>
+          </button>
+        ))}
+      </div>
+      <p class="qualifier__note">{qualifier.qualifier}</p>
+      <ActionLink
+        href={funnel.cta.destinationUrl}
+        label={funnel.cta.label}
+        note={funnel.cta.destinationNote}
+        className="button--hero"
+      />
+    </section>
+  </div>
+</header>

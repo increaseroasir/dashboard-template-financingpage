@@ -1,0 +1,30 @@
+---
+import BenefitNarrative from '../../../components/funnel/BenefitNarrative.astro';
+import ComparisonPanel from '../../../components/funnel/ComparisonPanel.astro';
+import FinalConversion from '../../../components/funnel/FinalConversion.astro';
+import HeroAndQualifier from '../../../components/funnel/HeroAndQualifier.astro';
+import ProcessSteps from '../../../components/funnel/ProcessSteps.astro';
+import ProofGrid from '../../../components/funnel/ProofGrid.astro';
+import { funnelConfig } from '../../../data/funnel';
+import PaidFunnelLayout from '../../../layouts/PaidFunnelLayout.astro';
+---
+
+<PaidFunnelLayout
+  title="Asta Build | Financing Request"
+  description="A staging paid-funnel template awaiting approved Asta Build content and a validated submission path."
+>
+  <main id="main-content">
+    <div class="staging-notice" role="status">
+      <div class="container">
+        <strong>Staging configuration</strong>
+        <span>{funnelConfig.staging.message}</span>
+      </div>
+    </div>
+    <HeroAndQualifier />
+    <BenefitNarrative />
+    <ProcessSteps />
+    <ProofGrid />
+    <ComparisonPanel />
+    <FinalConversion />
+  </main>
+</PaidFunnelLayout>

@@ -1,0 +1,36 @@
+---
+import { funnelConfig } from '../../data/funnel';
+import ActionLink from './ActionLink.astro';
+
+const { finalCta, funnel, legal } = funnelConfig;
+---
+
+<section class="final section-shell" aria-labelledby="final-title">
+  <div class="container">
+    <div class="final__card">
+      <p class="section-kicker">Next step</p>
+      <h2 id="final-title">{finalCta.title}</h2>
+      <p>{finalCta.body}</p>
+      <ActionLink
+        href={funnel.cta.destinationUrl}
+        label={funnel.cta.label}
+        note={funnel.cta.destinationNote}
+        className="button--final"
+      />
+    </div>
+
+    <footer class="legal-closure" aria-label="Legal information">
+      <p class="legal-closure__consent">{legal.consent}</p>
+      <p>{legal.copyright}</p>
+      <nav class="legal-links" aria-label="Policy links">
+        {legal.links.map((link) =>
+          link.href && link.approvalStatus === 'approved' ? (
+            <a href={link.href}>{link.label}</a>
+          ) : (
+            <span title="Add the approved legal URL before launch.">{link.label} pending</span>
+          ),
+        )}
+      </nav>
+    </footer>
+  </div>
+</section>

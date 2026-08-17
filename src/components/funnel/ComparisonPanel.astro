@@ -1,0 +1,35 @@
+---
+import { funnelConfig } from '../../data/funnel';
+
+const { comparison } = funnelConfig;
+const groups = [comparison.conventional, comparison.proposed];
+---
+
+<section class="comparison section-shell" aria-labelledby="comparison-title">
+  <div class="container comparison__inner">
+    <div class="comparison__intro">
+      <p class="section-kicker">Why the structure matters</p>
+      <h2 id="comparison-title">{comparison.intro.title}</h2>
+      <p>{comparison.intro.body}</p>
+    </div>
+
+    <div class="comparison__groups">
+      {groups.map((group) => (
+        <article class:list={['comparison-card', `comparison-card--${group.accent}`]}>
+          <h3>{group.label}</h3>
+          <ul>
+            {group.items.map((item) => (
+              <li>
+                <span class="comparison-card__marker" aria-hidden="true">→</span>
+                <div>
+                  <strong>{item.title}</strong>
+                  <p>{item.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  note?: string;
+  className?: string;
+}
+
+const { href, label, note, className = '' } = Astro.props;
+const isLive = Boolean(href);
+---
+
+{isLive ? (
+  <a class:list={['button', className]} href={href}>{label}</a>
+) : (
+  <span
+    class:list={['button', 'button--disabled', className]}
+    aria-disabled="true"
+    title={note ?? 'Add a verified destination before enabling this action.'}
+  >
+    {label}
+  </span>
+)}

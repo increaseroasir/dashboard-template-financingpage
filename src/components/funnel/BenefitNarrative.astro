@@ -1,0 +1,24 @@
+---
+import { funnelConfig } from '../../data/funnel';
+
+const { benefit } = funnelConfig;
+---
+
+<section class="benefit section-shell" aria-labelledby="benefit-title">
+  <div class="container benefit__grid">
+    <div class="benefit__copy">
+      <p class="section-kicker">The value of a clear next step</p>
+      <h2 id="benefit-title">{benefit.title}</h2>
+      <p>{benefit.body}</p>
+    </div>
+    <div class="benefit-visual" role="img" aria-label={benefit.visual.title}>
+      <div class="benefit-visual__frame">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <strong>{benefit.visual.title}</strong>
+      <small>{benefit.visual.description}</small>
+    </div>
+  </div>
+</section>

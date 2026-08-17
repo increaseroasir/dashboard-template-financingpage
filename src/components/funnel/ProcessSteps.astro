@@ -1,0 +1,24 @@
+---
+import { funnelConfig } from '../../data/funnel';
+
+const { process } = funnelConfig;
+---
+
+<section class="process section-shell" aria-labelledby="process-title">
+  <div class="container">
+    <p class="section-kicker">How the request flows</p>
+    <h2 id="process-title" class="section-title">{process.title}</h2>
+    <ol class="process-list">
+      {process.steps.map((step) => (
+        <li class="process-card">
+          <div class="process-card__top">
+            <span class="process-card__number">{step.number}</span>
+            <span class="process-card__step">Step</span>
+            <h3>{step.title}</h3>
+          </div>
+          <p>{step.description}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
